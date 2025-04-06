@@ -1,2 +1,2 @@
 # BusquedaNoInformada
-Generacion de arbol de decicison
+Generacion de arbol de decisiom
