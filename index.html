@@ -3,55 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Árboles de Decisión</title>
+    <title>Árbol de Decisión con Búsquedas No Informadas</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    <h1>Generador de Árboles de Decisión</h1>
-    
     <div class="container">
-        <div class="form-section">
-            <h2>Ingresar Datos para el Árbol de Decisión</h2>
-            <p>Formato: Cada línea representa un nodo en el formato "id,valor,padre" (el nodo raíz tiene padre "null")</p>
-            <p>Ejemplo:<br>
-            A,Atributo1,null<br>
-            B,Valor1,A<br>
-            C,Valor2,A<br>
-            D,Atributo2,B<br>
-            E,Resultado1,D<br>
-            F,Resultado2,D</p>
-            
-            <textarea id="tree-data" placeholder="Ingresa los datos del árbol aquí..."></textarea>
-            <button onclick="generateTree()">Generar Árbol</button>
+        <h1>Árbol de Decisión con Búsquedas No Informadas</h1>
+        
+        <div class="form-container">
+            <h2>Configuración del Árbol</h2>
+            <form id="treeForm">
+                <label for="width">Ancho del árbol (máximo de hijos por nodo, entre 2 y 3):</label>
+                <input type="number" id="width" name="width" min="2" max="3" value="2" required>
+                
+                <label for="depth">Profundidad del árbol (niveles):</label>
+                <input type="number" id="depth" name="depth" min="1" max="5" value="3" required>
+                
+                <label for="nodePrefix">Prefijo para los nodos (letras o números):</label>
+                <input type="text" id="nodePrefix" name="nodePrefix" value="N" required>
+                
+                <button type="submit">Generar Árbol</button>
+            </form>
+            <div id="formMessage"></div>
         </div>
         
-        <div class="result-section">
-            <h2>Resultados</h2>
-            <div id="tree-status"></div>
-            <div id="tree-container"></div>
-            <div class="algorithm-results">
-                <h3>Resumen del Árbol</h3>
-                <div id="tree-summary"></div>
-                
-                <h3>Algoritmos de Búsqueda No Informada</h3>
-                <button onclick="runBFS()">Ejecutar Búsqueda por Amplitud (BFS)</button>
-                <button onclick="runDFS()">Ejecutar Búsqueda por Profundidad (DFS)</button>
-                
-                <div id="algorithm-results">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Algoritmo</th>
-                                <th>Orden de Nodos Visitados</th>
-                                <th>Nodos Visitados</th>
-                            </tr>
-                        </thead>
-                        <tbody id="results-table">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="tree-container">
+            <h2>Visualización del Árbol</h2>
+            <div id="treeDiagram"></div>
+            <div id="treeMessage"></div>
+        </div>
+        
+        <div class="results-container">
+            <h2>Resumen del Árbol y Búsquedas</h2>
+            <div id="treeSummary"></div>
+            <div id="searchResults"></div>
         </div>
     </div>
 
